@@ -21,6 +21,7 @@
 - Windows 10/11
 - Python 3.x (if running from source)
 - `ALiteralNuker.exe` (precompiled version)
+⚠️ If Windows Defender flags ALiteralNuker.exe, it's due to automation behavior. Disable real-time protection at your own risk.
 
 ### 🖥️ Running ALiteralNuker
 #### Using the EXE:
@@ -43,13 +44,13 @@
    ```
 
 ## ⚙️ Configuration
-You can use the attachments folder to put attachments to spam webhooks with, to spam webhooks with the attachments you put in the folder, select to spam with attachments after selecting the Webhook Bomber.
+Place any files you want to spam webhooks with inside the attachments/ folder. When using the Webhook Bomber, select the option to spam with attachments.
 
 ## 🛑 Legal & Ethical Notice
 This project is **strictly for educational purposes**. Unauthorized use is **your responsibility**. The developer holds **no liability** for misuse.
 
 ---
 
-📢 **Need help or suggestions?** Open an issue on GitHub!
+🚀 Found a bug or have a feature request? Open an issue on GitHub!
 
 **🔥 Made for chaos, use responsibly! 🔥**
