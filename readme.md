@@ -56,7 +56,7 @@ Place any files you want to spam webhooks with inside the attachments/ folder. W
 
 ## 🧾 License  
 MIT License
-Copyright (c) 2025 LiterallySnowy  
+Copyright (c) 2025 LiterallySnowy and SkitDev
 
 
 ## 🛑 Legal & Ethical Notice
