@@ -20,7 +20,6 @@ def disclaimer():
     input(Fore.YELLOW + "Press ENTER to continue if you're not a total idiot...")
 
 disclaimer()
-# ====== END DISCLAIMER ======
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
