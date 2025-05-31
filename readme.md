@@ -57,6 +57,9 @@ Place any files you want to spam webhooks with inside the attachments/ folder. W
 5. Submit a pull request 🎉  
 
 
+## 📷 Preview
+![image](https://github.com/user-attachments/assets/72706556-d411-4b78-a12f-0e9a9422553e)
+
 ## 🧾 License  
 MIT License
 Copyright (c) 2025 Skidzz (LiterallySnowy) and SkitDev
