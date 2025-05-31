@@ -10,6 +10,18 @@ from colorama import Fore, Style, init
 
 init(autoreset=True)
 
+# ====== DISCLAIMER ======
+def disclaimer():
+    print(Fore.RED + "==============================================")
+    print(Fore.RED + "⚠️  WARNING: This script is for EDUCATIONAL and TESTING PURPOSES ONLY.")
+    print(Fore.RED + "⚠️  DO NOT run this on servers you don't own or have permission to attack.")
+    print(Fore.RED + "⚠️  The creators (LiterallySnowy and SkitDev) are NOT responsible for any damage caused.")
+    print(Fore.RED + "==============================================")
+    input(Fore.YELLOW + "Press ENTER to continue if you're not a total idiot...")
+
+disclaimer()
+# ====== END DISCLAIMER ======
+
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
