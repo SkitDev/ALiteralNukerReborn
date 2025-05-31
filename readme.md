@@ -1,6 +1,6 @@
 ![aliteralnuker banner](https://github.com/user-attachments/assets/a36fbe19-90c8-4911-8019-3525f3585685)
 
-# ALiteralNuker
+# ALiteralNuker Reborn
 
 ## ⚠️ DISCLAIMER
 > **This project is for educational and testing purposes only.** Using this software on any Discord server **without permission** violates Discord's Terms of Service and can lead to account termination.
@@ -59,7 +59,7 @@ Place any files you want to spam webhooks with inside the attachments/ folder. W
 
 ## 🧾 License  
 MIT License
-Copyright (c) 2025 LiterallySnowy  
+Copyright (c) 2025 Skidzz (LiterallySnowy) and SkitDev
 
 
 ## 🛑 Legal & Ethical Notice
