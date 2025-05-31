@@ -25,7 +25,7 @@
 
 ### 🖥️ Running ALiteralNuker
 #### Using the EXE:
-1. **Download** `ALiteralNuker.exe` from [Releases](https://github.com/literallysnowy/ALiteralNuker/releases).
+1. **Download** `ALiteralNuker.exe` from [Releases](https://github.com/SkitDev/ALiteralNukerReborn/releases).
 2. **Run** `ALiteralNuker.exe` and follow the on-screen instructions.
 
 #### Running from Source:
@@ -38,7 +38,9 @@
    ```sh
    pip install -r requirements.txt
    ```
-3. **Run the script:**  
+3. **Add proxies to proxies.txt**  
+
+4 **Running the script:**
    ```sh
    python main.py
    ```
