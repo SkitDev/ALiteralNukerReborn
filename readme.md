@@ -20,6 +20,7 @@
 ### 🔗 Prerequisites
 - Windows 10/11
 - Python 3.x (if running from source)
+- Proxies (Atleast 10)
 - `ALiteralNuker.exe` (precompiled version)
 ⚠️ If Windows Defender flags ALiteralNuker.exe, it's due to automation behavior. Disable real-time protection at your own risk.
 
