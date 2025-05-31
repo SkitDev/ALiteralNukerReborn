@@ -32,7 +32,7 @@
 #### Running from Source:
 1. **Clone the repo:**  
    ```sh
-   git clone https://github.com/literallysnowy/ALiteralNuker.git
+   git clone https://github.com/SkitDev/ALiteralNukerReborn.git
    cd ALiteralNuker
    ```
 2. **Install dependencies:**  
