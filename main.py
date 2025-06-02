@@ -1,3 +1,9 @@
+# This repo's source has been discontinued.
+# Files out of the releases tab wont be modified till further notice.
+# Although we wont be removing the old source.
+# If you want to use this source, please credit me and LiterallySnowy
+# Using it without credit may have us take action against you.
+
 # ====== IMPORTS ======
 import requests
 import discord
