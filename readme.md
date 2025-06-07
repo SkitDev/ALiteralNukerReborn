@@ -70,7 +70,7 @@ It can mass-delete channels, roles, and messages, spam new channels with custom 
 
 ## 📷 Preview
 
-![image](https://github.com/user-attachments/assets/72706556-d411-4b78-a12f-0e9a9422553e)
+![image](https://github.com/user-attachments/assets/fb7d85a0-a288-4f62-a03a-61eb502cbfa4)
 
 ---
 
