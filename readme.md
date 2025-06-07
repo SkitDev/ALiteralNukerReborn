@@ -14,10 +14,11 @@ It can mass-delete channels, roles, and messages, spam new channels with custom 
 
 ---
 
-## 🚀 Features
-✅ Webhook Spammer
-✅ Rate Limit Bypass (proxies)
-✅ Server Nuker
+### 🚀 Features
+- ✅ Rate Limit Bypass (proxies)  
+- ✅ Server Nuker  
+- ✅ Stats Tracking  
+- ✅ Easy to use GUI 
 
 
 ---
