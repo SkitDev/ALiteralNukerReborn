@@ -1,115 +1,60 @@
-![aliteralnuker banner](https://github.com/user-attachments/assets/a36fbe19-90c8-4911-8019-3525f3585685)
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/a36fbe19-90c8-4911-8019-3525f3585685" width="600" alt="ALiteralNuker Banner" />
+</p>
 
-# ALiteralNuker Reborn
-
-## ⚠️ DISCLAIMER
-> **This project is for educational and testing purposes only.**  
-> Using this software on any Discord server **without permission** violates Discord’s Terms of Service and can lead to account termination.
-
----
-
-## 📌 About
-**ALiteralNuker** (ALN) is a powerful automated Discord server nuker compiled into `ALiteralNuker.exe`.  
-It can mass-delete channels, roles, and messages, spam new channels with custom names, and do even more destructive things — all **made for sending scammers to the shadow realm** 🥀
+<h1 align="center">ALiteralNuker Reborn</h1>
+<p align="center"><b>🧨 A modern Discord nuker built for maximum damage and minimal effort.</b></p>
 
 ---
 
-### 🚀 Features
-- ✅ Rate Limit Bypass (proxies)  
-- ✅ Server Nuker  
-- ✅ Stats Tracking  
-- ✅ Easy to use GUI 
+## ⚠️ Disclaimer
 
-
----
-
-## 🛠️ Installation
-
-### 🔗 Prerequisites
-- Windows 10 or 11  
-- Python 3.x (if running from source)  
-- Proxies (minimum of 10 recommended)  
-- [`ALiteralNuker.exe`](https://github.com/SkitDev/ALiteralNukerReborn/releases) (optional)
-
-⚠️ *Windows Defender may flag `ALiteralNuker.exe` due to automation behavior. Disable real-time protection if necessary.*
+> This tool is intended **strictly for educational and testing purposes**.  
+> Using it without permission will violate Discord’s Terms of Service and may result in **account termination**.  
+> **You are fully responsible for what you do with this.**
 
 ---
 
-### 🖥️ Running ALiteralNuker
+## 🧠 What Is This?
 
-#### 🔹 Using the EXE:
-1. Download `ALiteralNuker.exe` from the [Releases](https://github.com/SkitDev/ALiteralNukerReborn/releases) page.  
-2. Run the file and follow the on-screen instructions.
-
-#### 🔹 Running from Source:
-1. **Clone the repo:**  
-   ```sh
-   git clone https://github.com/SkitDev/ALiteralNukerReborn.git
-   cd ALiteralNukerReborn
-   ```
-
-2. **Install dependencies:**  
-   ```sh
-   pip install -r requirements.txt
-   ```
-
-3. **Add proxies to** `proxies.txt`
-
-4. **Run the script:**  
-   ```sh
-   python main.py
-   ```
+**ALiteralNuker (ALN)** is a high-powered Discord nuker bundled into an `.exe` for easy deployment.  
+Designed to mass-delete, spam, flood, and destroy Discord servers **in seconds** — ALN is a click-and-nuke solution for anyone trying to send scam servers straight to hell 💀
 
 ---
 
-## ⚙️ Configuration
+## 🚀 Features
 
-- To spam **webhooks with files**, drop any images/videos/text into the `attachments/` folder.  
-- Supports common formats like `.jpg`, `.png`, `.mp4`, `.txt`, etc. (Max file size: 8MB per Discord limit)
-
----
-
-## 📷 Preview
-
-![image](https://github.com/user-attachments/assets/fb7d85a0-a288-4f62-a03a-61eb502cbfa4)
+- ✅ **Mass Channel/Role Deletion**
+- ✅ **Spam Channel Creation w/ Custom Names**
+- ✅ **Rate Limit Bypass via Proxy Rotation**
+- ✅ **Webhook Spammer w/ File Support**
+- ✅ **Live Stats & Logs**
+- ✅ **Clean GUI**
 
 ---
 
-## 🟢 Contributing
+## 🛠 Setup & Installation
 
-1. Fork the repo  
-2. Create a feature branch:  
-   ```sh
-   git checkout -b feature-xyz
-   ```
-3. Commit your changes:  
-   ```sh
-   git commit -m "Added xyz feature"
-   ```
-4. Push to your fork and open a pull request 🎉
+### 🔗 Requirements
+- Windows 10/11
+- Python 3.x (only if you're running the old source version)
+- At least 10 working proxies
+- [`ALiteralNuker.exe`](https://github.com/SkitDev/ALiteralNukerReborn/releases) *(optional but easy)*
+
+⚠️ Your antivirus might flag it. Disable real-time protection temporarily if needed.
 
 ---
 
-## 🧾 License
-
-MIT License  
-Copyright (c) 2025  
-[Skidzz (LiterallySnowy)](https://github.com/LiterallySnowy) & [SkitDev](https://github.com/SkitDev)
-
----
-
-## 🛑 Legal & Ethical Notice
-
-This project is **strictly for educational purposes.**  
-Unauthorized use is **your responsibility.**  
-The developers hold **no liability** for any misuse or damage caused.
+### ▶️ Run via EXE (Easiest)
+1. [Download from Releases](https://github.com/SkitDev/ALiteralNukerReborn/releases)
+2. Run `ALiteralNuker.exe`
+3. Follow the GUI and vibe 😈
 
 ---
 
-## 🚀 Need help?  
-Found a bug or have a feature request?  
-Open an [issue](https://github.com/SkitDev/ALiteralNukerReborn/issues) on GitHub!
+### 🔧 Run via Source (Dev Mode)
 
----
-
-**🔥 Made for chaos, use responsibly! 🔥**
+```bash
+git clone https://github.com/SkitDev/ALiteralNukerReborn.git
+cd ALiteralNukerReborn
+pip install -r requirements.txt
