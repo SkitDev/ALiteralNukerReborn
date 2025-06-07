@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/SkitDev/ALiteralNukerFilesForSetupIdk/main/aln%20green.png" width="200" alt="ALiteralNuker Green Logo" />
+  <img src="https://raw.githubusercontent.com/SkitDev/ALiteralNukerFilesForSetupIdk/refs/heads/main/aln_green-removebg-preview.png" width="200" alt="ALiteralNuker Logo" />
 </p>
 
 <h1 align="center">ALiteralNuker Reborn</h1>
