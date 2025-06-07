@@ -1,9 +1,9 @@
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/a36fbe19-90c8-4911-8019-3525f3585685" width="600" alt="ALiteralNuker Banner" />
+  <img src="https://raw.githubusercontent.com/SkitDev/ALiteralNukerFilesForSetupIdk/main/aln%20green.png" width="200" alt="ALiteralNuker Green Logo" />
 </p>
 
 <h1 align="center">ALiteralNuker Reborn</h1>
-<p align="center"><b>🧨 A modern Discord nuker built for maximum damage and minimal effort.</b></p>
+<p align="center"><b>💚 A modern Discord nuker built for max damage with zero hesitation.</b></p>
 
 ---
 
