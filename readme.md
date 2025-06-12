@@ -52,8 +52,7 @@ And **test in a VM** if you don’t trust it. I would too.
 
 ### ▶️ Quick Launch via EXE (Recommended)
 
-1. [⬇️ Download from Releases]([https://github.com/SkitDev/ALiteralNukerReborn/releases](https://github.com/SkitDev/ALiteralNukerReborn/releases/latest/download/ALNInstaller.exe
-))  
+1. [⬇️ Download from Releases](https://github.com/SkitDev/ALiteralNukerReborn/releases/latest/download/ALNInstaller.exe) 
 2. Launch `ALiteralNuker.exe`  
 3. Let the GUI guide you into the abyss 😈
 
