@@ -53,3 +53,4 @@ Wrapped in a clean GUI, it nukes with style, speed, and zero hesitation.
 git clone https://github.com/SkitDev/ALiteralNukerReborn.git
 cd ALiteralNukerReborn
 python ALiteralNuker.py
+<p align="center"><b>💚 Built by real ones. Used by demons. 💚</b></p> ```
