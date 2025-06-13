@@ -42,7 +42,7 @@ Capable of mass deletion, spam, flood, and disruption at terminal velocity — i
 - 🪟 Windows 10 / 11  
 - 🐍 Python 3.x *(for source version)*  
 - 🌐 At least 10 working HTTP proxies  
-- 💾 [`ALiteralNuker.exe`](https://github.com/SkitDev/ALiteralNukerReborn/releases) *(preferred)*
+- 💾 [`ALiteralNuker.exe`](skids-are-very.smelly.cc) *(preferred)*
 
 ⚠️ Some antivirus programs may flag it — because it’s powerful, not because it’s a rat.  
 Disable real-time protection if needed.  
@@ -52,7 +52,7 @@ And **test in a VM** if you don’t trust it. I would too.
 
 ### ▶️ Quick Launch via EXE (Recommended)
 
-1. [⬇️ Download from Releases](https://github.com/SkitDev/ALiteralNukerReborn/releases/latest/download/ALNInstaller.exe) 
+1. [⬇️ Download from Releases](skids-are-very.smelly.cc) 
 2. Launch `ALiteralNuker.exe`  
 3. Let the GUI guide you into the abyss 😈
 
