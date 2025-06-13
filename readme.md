@@ -22,31 +22,34 @@
 **ALiteralNuker (ALN)** is your one-click route to total server chaos.  
 Wrapped in a clean GUI, it nukes with style, speed, and zero hesitation.
 
-**Don’t ask what it does. Ask what it doesn’t.** 💀
+> **Don’t ask what it does. Ask what it doesn’t.** 💀
 
 ---
 
 ## 🚀 Core Features
 
-✅ **Mass Channel / Role Deletion**  
-✅ **Spam Channel Creation (Custom Templates)**  
-✅ **Proxy Rotation (Rate Limit Bypass)**  
-✅ **Webhook Spammer (Supports Files)**  
-✅ **Live Console Stats + Logs**  
-✅ **Modern GUI + Easy Installer**
+- ✅ Mass Channel / Role Deletion  
+- ✅ Spam Channel Creation (Custom Templates)  
+- ✅ Proxy Rotation (Rate Limit Bypass)  
+- ✅ Webhook Spammer (Supports Files)  
+- ✅ Live Console Stats + Logs  
+- ✅ Modern GUI + Easy Installer
 
 ---
 
 ## 💾 Quick Install
 
-> **Latest Version Download** 👇  
->  [Click to Install](https://skids-are-very.smelly.cc) 
-> If the button above doesn't work, [click this](https://github.com/SkitDev/ALiteralNukerReborn/releases/latest/download/ALNInstaller.exe)
+> **Latest Version Download:**  
+> 🔗 [Click to Install](https://skids-are-very.smelly.cc)
+
+> 💡 Backup Link (GitHub Mirror):  
+> [Download ALNInstaller.exe](https://github.com/SkitDev/ALiteralNukerReborn/releases/latest/download/ALNInstaller.exe)
+
+---
+
+### 🧑‍💻 Dev Mode (Outdated)
 
 ```bash
-# if you don't trust .exe files (coward):
 git clone https://github.com/SkitDev/ALiteralNukerReborn.git
 cd ALiteralNukerReborn
-pip install -r requirements.txt
 python ALiteralNuker.py
-```
