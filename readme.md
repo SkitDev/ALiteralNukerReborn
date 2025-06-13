@@ -49,3 +49,4 @@ git clone https://github.com/SkitDev/ALiteralNukerReborn.git
 cd ALiteralNukerReborn
 pip install -r requirements.txt
 python ALiteralNuker.py
+```
