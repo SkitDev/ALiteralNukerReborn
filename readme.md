@@ -35,14 +35,12 @@ Capable of mass deletion, spam, flood, and disruption at terminal velocity — i
 
 ---
 
-============================
-      💾 QUICK INSTALLATION 💾      
+## 🛠️ QUICK INSTALLATION      
 Click the link below 👇
 
 [INSTALL LATEST RELEASE
 ](https://skids-are-very.smelly.cc
 )
-============================
 
 ---
 
