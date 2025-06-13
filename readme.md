@@ -40,7 +40,7 @@ Wrapped in a clean GUI, it nukes with style, speed, and zero hesitation.
 ## 💾 Quick Install
 
 > **Latest Version Download** 👇  
-> 🧨 [Click to Install](https://skids-are-very.smelly.cc) 🧨
+>  [Click to Install](https://skids-are-very.smelly.cc) 
 > If the button above doesn't work, [click this](https://github.com/SkitDev/ALiteralNukerReborn/releases/latest/download/ALNInstaller.exe)
 
 ```bash
